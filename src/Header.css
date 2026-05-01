@@ -1,18 +1,17 @@
-.header{
+.header {
     background-color: #0a6e31;
-    color : white;
+    color: white;
     padding: 20px;
     text-align: center;
 }
 
-.header-titre {
+.header.titre {
     margin: 0;
     font-size: 2rem;
 }
 
-.header-soustitre {
-    margin: 5px 0 0 0;
-    font-size: 1rem;
-    font-size: 1 rem;
+.header.soustitre {
+    margin: 8px 0 0 0;
+    font-size: 0.95rem;
     opacity: 0.9;
 }

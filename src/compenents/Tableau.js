@@ -3,8 +3,8 @@ import User , {Test} from './User'
 
 function Tableau({titre}) {
     const utilisateurs = [
-    {id : 1, nom : "DIA", prenom : "Mamadou"},
-    {id : 2, nom : "DIENE", prenom : "Cheikh Mbacke"},
+    {id : 1, nom : "CISSE", prenom : "Daouda"},
+    {id : 2, nom : "BA", prenom : "Abdallah"},
   ]
     return(
         <div>
