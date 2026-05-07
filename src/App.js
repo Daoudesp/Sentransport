@@ -1,4 +1,3 @@
-
 import {useState} from 'react';
 import './App.css';
 import Header from './Header';
@@ -10,6 +9,7 @@ import Footer from './Footer';
 function App(){
   const [recherche,setRecherche]=useState("");
   const [ligneSelectionnee,setLigneSelectionnee]=useState(null);
+  const [nbRecherches,setNbRecherches]=useState(0);
 
   const lignes=[
     {id:1,numero:"1",depart:"Parcelles Assainies",arrivee:"Plateau",arrets:14,listeArrets:["Parcelles U14","Parcelles U10","Camberene","Patte d'Oie","Grand Dakar","Colobane","Ponty","Plateau"]},
@@ -34,14 +34,23 @@ function App(){
     }
   }
 
+  function handleRecherche(valeur){
+    setRecherche(valeur);
+    setNbRecherches(n=>n+1);
+  }
+
   return(
     <div className="App">
       <Header/>
       <main className="contenu">
-        <Recherche valeur={recherche} onChange={setRecherche}/>
-        <p className="resultat-recherche">
-          {lignesFiltrees.length} ligne{lignesFiltrees.length>1?'s':''} trouvee{lignesFiltrees.length>1?'s':''}
-        </p>
+        <p>Vous avez effectue {nbRecherches} recherche(s)</p>
+        <Recherche valeur={recherche} onChange={handleRecherche}/>
+        {lignesFiltrees.length===0
+          ?<p>Aucune ligne trouvee</p>
+          :<p className="resultat-recherche">
+            {lignesFiltrees.length} ligne{lignesFiltrees.length>1?'s':''} trouvee{lignesFiltrees.length>1?'s':''}
+          </p>
+        }
         {lignesFiltrees.map(ligne=>(
           <LigneBus
             key={ligne.id}

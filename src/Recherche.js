@@ -9,6 +9,7 @@ function Recherche({valeur,onChange}){
         value={valeur}
         onChange={e=>onChange(e.target.value)}
       />
+      <button onClick={()=>onChange("")}>Effacer</button>
     </div>
   );
 }
