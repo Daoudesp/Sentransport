@@ -15,13 +15,60 @@
     border: 2px solid #dcdde1;
   }
   
-  .arret-proche {
-    color: #0a6e31;
-    font-size: 0.95rem;
+  .arrets-proches-liste {
+    list-style: none;
     margin: 0 0 12px 0;
-    padding: 8px 12px;
-    background-color: #e8f5e9;
+    padding: 10px 14px;
+    background-color: #f8f9fa;
+    border: 1px solid #dcdde1;
     border-radius: 6px;
+    font-size: 0.95rem;
+  }
+
+  .arrets-proches-liste li {
+    padding: 4px 0;
+    color: #2c3e50;
+  }
+
+  .arrets-proches-liste .arret-plus-proche {
+    color: #d35400;
+    font-weight: 600;
+  }
+
+  .arret-rang {
+    margin-right: 6px;
+    color: #7f8c8d;
+  }
+
+  .arret-distance {
+    color: #555;
+    font-weight: normal;
+  }
+
+  .carte-bouton-centrer {
+    margin: 10px;
+    pointer-events: auto;
+  }
+
+  .btn-centrer-position {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #2980b9;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-centrer-position:hover:not(:disabled) {
+    background-color: #1f6fa3;
+  }
+
+  .btn-centrer-position:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
   }
 
   .geo-info {
