@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
@@ -6,7 +7,10 @@ app = Flask(__name__)
 CORS(app)
 
 # Charger les donnees depuis le fichier JSON
-with open("lignes_ddd.json", "r") as f:
+BASE_DIR = Path(__file__).resolve().parent
+DATA_FILE = BASE_DIR / "lignes_ddd.json"
+
+with open(DATA_FILE, "r", encoding="utf-8") as f:
     lignes = json.load(f)
 
 # --- Route de base ---
@@ -71,4 +75,4 @@ def recherche_lignes():
     return jsonify(resultats)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
