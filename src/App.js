@@ -1,3 +1,4 @@
+import Carte from './Carte';
 import {useState} from 'react';
 import {useEffect} from 'react';
 import './App.css';
@@ -15,7 +16,11 @@ function App(){
   const [ligneSelectionnee,setLigneSelectionnee]=useState(null);
   const [nbRecherches,setNbRecherches]=useState(0);
 
-  useEffect(()=>{
+  function chargerLignes(){
+    setChargement(true);
+    setErreur(null);
+    setLigneSelectionnee(null);
+
     fetch("http://127.0.0.1:5001/lignes")
       .then(response=>{
         if(!response.ok){
@@ -31,6 +36,10 @@ function App(){
         setErreur(error.message);
         setChargement(false);
       });
+  }
+
+  useEffect(()=>{
+    chargerLignes();
   },[]);
 
   const lignesFiltrees=lignes.filter(l=>
@@ -42,9 +51,22 @@ function App(){
   function handleClickLigne(ligne){
     if(ligneSelectionnee&&ligneSelectionnee.id===ligne.id){
       setLigneSelectionnee(null);
-    }else{
-      setLigneSelectionnee(ligne);
+      return;
     }
+
+    fetch(`http://127.0.0.1:5001/lignes/${ligne.id}`)
+      .then(response=>{
+        if(!response.ok){
+          throw new Error("Erreur serveur : "+response.status);
+        }
+        return response.json();
+      })
+      .then(data=>{
+        setLigneSelectionnee(data);
+      })
+      .catch(()=>{
+        setLigneSelectionnee(null);
+      });
   }
 
   function handleRecherche(valeur){
@@ -84,6 +106,9 @@ function App(){
       <main className="contenu">
         <p>Vous avez effectue {nbRecherches} recherche(s)</p>
         <Recherche valeur={recherche} onChange={handleRecherche}/>
+        <button className="btn-recharger" onClick={chargerLignes}>
+          Recharger
+        </button>
         {lignesFiltrees.length===0
           ?<p>Aucune ligne trouvee</p>
           :<p className="resultat-recherche">
@@ -102,6 +127,7 @@ function App(){
           />
         ))}
         {ligneSelectionnee&&<DetailLigne ligne={ligneSelectionnee}/>}
+        <Carte />
       </main>
       <Footer/>
     </div>

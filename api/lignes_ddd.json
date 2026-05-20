@@ -44,5 +44,19 @@
       "arrets": 11,
       "listeArrets": ["Yoff Village", "Aeroport LSS",
         "Parcelles U17", "Grand Yoff", "HLM", "Sandaga"]
+    },
+    {
+      "id": 7, "numero": "31",
+      "depart": "Rufisque", "arrivee": "Petersen",
+      "arrets": 13,
+      "listeArrets": ["Rufisque Gare", "Bargny", "Diamniadio",
+        "Keur Ndiaye Lo", "Keur Massar", "Thiaroye", "Petersen"]
+    },
+    {
+      "id": 8, "numero": "45",
+      "depart": "Keur Massar", "arrivee": "Ouakam",
+      "arrets": 15,
+      "listeArrets": ["Keur Massar", "Thiaroye", "Pikine",
+        "Patte d'Oie", "Mermoz", "Fann", "Ouakam"]
     }
   ]

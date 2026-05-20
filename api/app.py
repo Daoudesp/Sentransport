@@ -35,15 +35,14 @@ def get_ligne(ligne_id):
         return jsonify({"erreur": "Ligne non trouvee"}), 404
     return jsonify(ligne)
 
-# --- Exercice 1 : GET /arrets ---
-# Retourne tous les arrets sans doublons
+# --- GET /arrets (coordonnees pour la carte) ---
+ARRETS_FILE = BASE_DIR / "arrets.json"
+with open(ARRETS_FILE, "r", encoding="utf-8") as f:
+    arrets = json.load(f)
+
 @app.route("/arrets")
 def get_arrets():
-    tous_les_arrets = []
-    for ligne in lignes:
-        tous_les_arrets.extend(ligne["listeArrets"])
-    arrets_uniques = list(set(tous_les_arrets))
-    return jsonify(arrets_uniques)
+    return jsonify(arrets)
 
 # --- Exercice 2 : GET /stats ---
 # Retourne statistiques : nb lignes, total arrets, ligne avec le plus d'arrets
